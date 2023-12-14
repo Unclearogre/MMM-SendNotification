@@ -22,7 +22,7 @@ Module.register("MMM-SendNotification", {
   startup(){
      this.do_action()
      setInterval(this.do_action,this.config.interval)
-  }
+  },
   do_action(){
     if(!this.suspended){
        this.sendNotification(this.config.notifitation, this.config.payload)
