@@ -14,14 +14,16 @@ Module.register("MMM-SendNotification", {
   suspend(){
     this.suspended=true;
     clearInterval(this.intervalHandle);
+    this.intervalHandle=null
   },
   resume(){
     this.suspended=false
-    this.startup()
+    if(this.intervalHandle==null)
+      this.startup()
   },
   startup(){
      this.do_action()
-     setInterval(()=>{this.do_action()},this.config.interval,this)
+     this.intervalHandle=setInterval(()=>{this.do_action()},this.config.interval,this)
   },
   do_action(){
     if(!this.suspended){
