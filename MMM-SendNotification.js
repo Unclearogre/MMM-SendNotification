@@ -9,12 +9,13 @@ Module.register("MMM-SendNotification", {
   notificationReceived(topic, data){
       if(topic ==="ALL_MODULES_STARTED"){
         this.startup()
+      } else if(topic==this.config.notification){
+        this.restartTimer();
       }
   },
   suspend(){
     this.suspended=true;
-    clearInterval(this.intervalHandle);
-    this.intervalHandle=null
+    this.stopTimer();
   },
   resume(){
     this.suspended=false
@@ -23,7 +24,18 @@ Module.register("MMM-SendNotification", {
   },
   startup(){
      this.do_action()
-     this.intervalHandle=setInterval(()=>{this.do_action()},this.config.interval,this)
+     this.startTimer()
+  },
+  startTimer(){
+      this.intervalHandle=setInterval(()=>{this.do_action()},this.config.interval,this)
+  },
+  stopTimer(){
+      clearInterval(this.intervalHandle);
+      this.intervalHandle=null
+  },
+  restartTimer(){
+    this.stopTimer()
+    this.startTimer();
   },
   do_action(){
     if(!this.suspended){
