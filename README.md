@@ -2,6 +2,7 @@
 
    install
       cd ~/MagicMirror/modules
+
       git clone https://github.com/sdetweil/MMM-SendNotification
 
    config
