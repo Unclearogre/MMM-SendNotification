@@ -2,6 +2,7 @@ Module.register("MMM-SendNotification", {
   defaults: {
     interval: 60000,
     notification: "something",
+    resetNotifiation: "something else",
     payload:null
   },
   suspended:false,
@@ -9,7 +10,7 @@ Module.register("MMM-SendNotification", {
   notificationReceived(topic, data){
       if(topic ==="ALL_MODULES_STARTED"){
         this.startup()
-      } else if(topic==this.config.notification){
+      } else if(topic==this.config.resetNotification){
         this.restartTimer();
       }
   },
