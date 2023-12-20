@@ -9,6 +9,7 @@
 ```
        interval : nnnnn   millisseconds, default 60000 (1 minute)
        notification:  xxxxx   some string "PAGE_CHANGED", default "something"
+       resetNotification:  xxxxx   some string "PAGE_INCREMENT", default "something else"
        payloadL    yyy        some value, string, number or object, default null
 ```
 example config
